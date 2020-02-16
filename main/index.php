@@ -24,6 +24,8 @@
 						</p>
 					</div>
 					<div class="step">
+						<form class="" action="index.html" method="post">
+							<!-- form beginnings -->
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
@@ -47,103 +49,9 @@
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label>Confirm email</label>
-									<input type="email" id="email_booking_2" name="email_booking_2" class="form-control" placeholder="jhon@doe.com">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group">
-									<label>Telephone</label>
-									<input type="text" id="telephone_booking" name="telephone_booking" class="form-control" placeholder="00 44 678 94329">
-								</div>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<!--End step -->
-
-					<div class="form_title">
-						<h3><strong>2</strong>Payment Information</h3>
-						<p>
-							Enter your payment and billing information.
-						</p>
-					</div>
-					<div class="step">
-						<div class="form-group">
-							<label>Name on card</label>
-							<input type="text" class="form-control" id="name_card_booking" name="name_card_booking" placeholder="Jhon Doe">
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Card number</label>
-									<input type="text" id="card_number" name="card_number" class="form-control" placeholder="xxxx - xxxx - xxxx - xxxx">
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-6">
-								<img src="img/payments.png" alt="Cards" class="cards">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<label>Expiration date</label>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="text" id="expire_month" name="expire_month" class="form-control" placeholder="MM">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="text" id="expire_year" name="expire_year" class="form-control" placeholder="Year">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Security code</label>
-									<div class="row">
-										<div class="col-md-4">
-											<div class="form-group">
-												<input type="text" id="ccv" name="ccv" class="form-control" placeholder="CCV">
-											</div>
-										</div>
-										<div class="col-md-8">
-											<img src="img/icon_ccv.gif" width="50" height="29" alt="ccv"><small>Last 3 digits</small>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--End row -->
-
-						<h5>Or checkout with Paypal</h5>
-						<p>
-							Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie, reque fierent dissentiunt mel ea.
-						</p>
-						<p>
-							<img src="img/paypal_bt.png" alt="Image">
-						</p>
-					</div>
-					<hr>
-					<!--End step -->
-
-					<div class="form_title">
-						<h3><strong>3</strong>Billing Address</h3>
-						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
-						</p>
-					</div>
-					<div class="step">
-						<div class="row">
-							<div class="col-md-6 col-sm-6">
-								<label>Country</label>
-								<div class="form-group">
+									<label for="service">District</label>
 									<select class="form-control" name="country" id="country">
-										<option value="">Select your country</option>
+										<option value="">Select your District</option>
 										<option value="Europe">Europe</option>
 										<option value="United states">United states</option>
 										<option value="Asia">Asia</option>
@@ -154,49 +62,37 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label>Street line 1</label>
-									<input type="text" id="street_1" name="street_1" class="form-control" placeholder="Street line 1">
+									<label for="service">Service</label>
+									<select class="form-control" name="country" id="country">
+										<option value="">Select your Service</option>
+										<option value="Europe">Europe</option>
+										<option value="United states">United states</option>
+										<option value="Asia">Asia</option>
+									</select>
 								</div>
 							</div>
+
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label>Street line 2</label>
-									<input type="text" id="street_2" name="street_2" class="form-control" placeholder="Street line 1">
+									<label for="service">Prvover</label>
+									<select class="form-control" name="country" id="country">
+										<option value="">Select your Provider</option>
+										<option value="Europe">Europe</option>
+										<option value="United states">United states</option>
+										<option value="Asia">Asia</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="col-md-12 col-sm-6">
+								<div class="form-group">
+									<label for="notes"></label>
+									<textarea name="description" class="form-control" placeholder="Enter notes about your bookings" rows="8" cols="90"></textarea>
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>City</label>
-									<input type="text" id="city_booking" name="city_booking" class="form-control" placeholder="Miami">
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>State</label>
-									<input type="text" id="state_booking" name="state_booking" class="form-control" placeholder="Florida">
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>Postal code</label>
-									<input type="text" id="postal_code" name="postal_code" class="form-control" placeholder="00342">
-								</div>
-							</div>
-						</div>
-						<!--End row -->
 					</div>
 					<hr>
-					<!--End step -->
-					<div id="policy">
-						<h4>Cancellation policy</h4>
-						<div class="form-group">
-							<label>
-								<input type="checkbox" name="policy_terms" id="policy_terms"> I accept terms and conditions and general policy.
-							</label>
-						</div>
-					</div>
 				</div>
 				</div>
 				<!-- /col -->
@@ -204,30 +100,25 @@
 					<div class="box_general_3 booking">
 						<form>
 							<div class="title">
-								<h3>Your booking</h3>
+								<h3>Booking Details</h3>
 							</div>
 							<div class="summary">
 								<ul>
-									<li>Date: <strong class="float-right">11/12/2017</strong></li>
+									<li>Name: <strong class="float-right">11/12/2017</strong></li>
 									<li>Time: <strong class="float-right">10.30 am</strong></li>
 									<li>Dr. Name: <strong class="float-right">Dr. julia Jhones</strong></li>
 								</ul>
 							</div>
 							<ul class="treatments checkout clearfix">
 								<li>
-									Back Pain visit <strong class="float-right">$55</strong>
-								</li>
-								<li>
-									Cardiovascular screen <strong class="float-right">$55</strong>
-								</li>
-								<li class="total">
-									Total <strong class="float-right">$110</strong>
+									Service <strong class="float-right">$55</strong>
 								</li>
 							</ul>
 							<hr>
-							<a href="confirm.html" class="btn_1 full-width">Confirm and pay</a>
+							<a href="payments.php" class="btn_1 full-width">Confirm Details</a>
 						</form>
 					</div>
+					</form>
 					<!-- /box_general -->
 				</aside>
 				<!-- /asdide -->

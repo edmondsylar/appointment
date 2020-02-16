@@ -1,1 +1,4 @@
-<?php include_once "main/index.php"; ?>
+<?php
+  header("Location: main/index.php");
+  // console.log('This is access from a normal user.')
+ ?>
