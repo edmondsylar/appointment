@@ -1,9 +1,11 @@
-<?php include_once "includes/head.php"; ?>
-
+<?php include_once "includes/head.php";
+  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+  header("Location: login.php");
+} ?>
 <?php
   include_once "main/back/config.php";
   $cur = new Config();
-  $apps = $cur->get_appointments();
+  $apps = $cur->get_appointments($_SESSION['name']);
 
  ?>
 

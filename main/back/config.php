@@ -18,6 +18,23 @@
       if($this->conn === true){ echo "App not loving your connection"; }
   }
 
+  function login($email, $pass){
+    $password = md5($pass);
+    $login = "SELECT * FROM doctors WHERE email='$email' AND password='$password'";
+    $res = mysqli_fetch_assoc(mysqli_query($this->conn, $login));
+
+    if($res['id']){
+      session_start();
+        $_SESSION["loggedin"] = true;
+        $_SESSION["email"] = $res['email'];
+        $_SESSION["name"] = $res['fullname'];
+
+        echo $_SESSION['name'];
+       header("Location: ../doclist.php");
+
+    }
+  }
+
   function apoint_one($f, $e, $ph, $n, $date){
     $id = uniqid('', true);
     $sql = "INSERT INTO appointments(`id`,`Fullname`, `email`, `Phone`, `Notes`, `date`) VALUES ('$id', '$f', '$e', '$ph', '$n', '$date')";
@@ -29,7 +46,8 @@
   }
 
   function add_doctor($name, $mail, $phone, $spec, $address, $district){
-    $make_doc = "INSERT INTO doctors(`fullname`, `email`, `Phone`, `specialty`, `address`, `district`) VALUES ('$name', '$mail', '$phone', '$spec', '$address', '$district')";
+    $password = md5('password');
+    $make_doc = "INSERT INTO doctors(`fullname`, `email`, `Phone`, `specialty`, `address`, `district`, `password`) VALUES ('$name', '$mail', '$phone', '$spec', '$address', '$district', '$password')";
     $q = mysqli_query($this->conn, $make_doc);
 
     if($q === false){
@@ -89,9 +107,9 @@
     }
   }
 
-  function get_appointments()
+  function get_appointments($doc)
     {
-      $apps = "SELECT * FROM appointments";
+      $apps = "SELECT * FROM appointments where Provider='$doc'";
       $q = mysqli_query($this->conn, $apps);
       $results = ($q);
 

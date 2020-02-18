@@ -23,7 +23,7 @@
             <span class="nav-link-text">Appointments </span>
           </a>
         </li>
-		
+
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
@@ -59,7 +59,7 @@
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">Alerts</h6>
             <!-- <div class="dropdown-divider"></div> -->
-            
+
           </div>
         </li>
         <li class="nav-item">
@@ -75,7 +75,7 @@
           </form>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+          <a class="nav-link" href="includes/logout.php" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
       </ul>

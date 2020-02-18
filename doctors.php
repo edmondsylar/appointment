@@ -1,4 +1,7 @@
-<?php include_once "includes/head.php"; ?>
+<?php include_once "includes/head.php";
+  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+  header("Location: login.php");
+} ?>
 
 <body class="fixed-nav sticky-footer" id="page-top">
 
