@@ -1,4 +1,24 @@
 <?php include_once "includes/head.php" ?>
+<div class="comps">
+	<?php
+		if(isset($_GET['credits'])){
+			echo $_GET['credits'];
+
+		}
+	 ?>
+</div>
+<?php
+	include_once "back/config.php";
+	$cur = new Config();
+
+	$districts = $cur->get_districts();
+	if(isset($_GET['d'])){
+		$dist = $_GET['d'];
+		$Specialty = $cur->get_specs($dist);
+		// echo gettype($Specialty);
+	}
+ ?>
+
 <main>
 		<div id="breadcrumb">
 			<div class="container">
@@ -23,20 +43,20 @@
 							Enter Details for your booking
 						</p>
 					</div>
-					<div class="step">
-						<form class="" action="index.html" method="post">
+					<div class="step" id="mydiv">
+						<form action="back/book.php" method="POST">
 							<!-- form beginnings -->
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label>Full Name</label>
-									<input type="text" class="form-control" id="firstname_booking" name="name" placeholder="Jhon">
+									<input type="text" name="names" class="form-control" id="firstname_booking" placeholder="Jhon">
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label>Email Address</label>
-									<input type="text" class="form-control" id="lastname_booking" name="lastname_booking" placeholder="Doe">
+									<input type="text" class="form-control" id="lastname_booking" name="email" placeholder="Doe">
 								</div>
 							</div>
 						</div>
@@ -44,17 +64,19 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label>Phone Number</label>
-									<input type="tel" id="telephone" name="email_booking" class="form-control" placeholder="jhon@doe.com">
+									<input type="tel" id="telephone" name="phone" class="form-control" placeholder="jhon@doe.com">
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label for="service">District</label>
-									<select class="form-control" name="country" id="country">
-										<option value="">Select your District</option>
-										<option value="Europe">Europe</option>
-										<option value="United states">United states</option>
-										<option value="Asia">Asia</option>
+									<select class="form-control" name="district" id="country">
+										<option value="" selected>Select your District</option>
+										<?php if (!empty($districts)): ?>
+											<?php foreach ($districts as $key => $value): ?>
+												<option value="<?php echo $value['name'] ?>" onclick="window.location.href='index.php?d=<?php echo $value['name'] ?>'"><?php echo $value['name'] ?></option>
+											<?php endforeach; ?>
+										<?php endif; ?>
 									</select>
 								</div>
 							</div>
@@ -63,11 +85,13 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label for="service">Service</label>
-									<select class="form-control" name="country" id="country">
+									<select class="form-control" name="service" id="country">
 										<option value="">Select your Service</option>
-										<option value="Europe">Europe</option>
-										<option value="United states">United states</option>
-										<option value="Asia">Asia</option>
+										<?php if (!empty($Specialty)): ?>
+											<?php foreach ($Specialty as $key => $value): ?>
+												<option value="<?php echo $value['specialty'] ?>" onclick="window.location.href='index.php?d=<?php echo $dist; ?>&spec='<?php echo $value['specialty'] ?>''"><?php echo $value['specialty'] ?></option>
+											<?php endforeach; ?>
+										<?php endif; ?>
 									</select>
 								</div>
 							</div>
@@ -75,7 +99,7 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<label for="service">Prvover</label>
-									<select class="form-control" name="country" id="country">
+									<select class="form-control" name="provider" id="country">
 										<option value="">Select your Provider</option>
 										<option value="Europe">Europe</option>
 										<option value="United states">United states</option>
@@ -115,7 +139,8 @@
 								</li>
 							</ul>
 							<hr>
-							<a href="payments.php" class="btn_1 full-width">Confirm Details</a>
+							<input type="submit" class="btn_1 full-width" value="Confirm Details">
+							<!-- <a href="payments.php" class="btn_1 full-width">Confirm Details</a> -->
 						</form>
 					</div>
 					</form>

@@ -1,5 +1,12 @@
 <?php include_once "includes/head.php"; ?>
 
+<?php
+  include_once "main/back/config.php";
+  $cur = new Config();
+  $apps = $cur->get_appointments();
+
+ ?>
+
 <body class="fixed-nav sticky-footer" id="page-top">
   <!-- Navigation-->
   <?php include_once "includes/nav.php" ?>
@@ -27,51 +34,30 @@
 			</div>
 			<div class="list_general">
 				<ul>
-					<li>
-						<figure><img src="img/avatar1.jpg" alt=""></figure>
-						<h4>Enzo Ferrari <i class="pending">Pending</i></h4>
-						<ul class="booking_details">
-							<li><strong>Booking date</strong> 11 November 2017</li>
-							<li><strong>Booking time</strong> 10.20AM</li>
-							<li><strong>Visits</strong> Cardiology test, Diabetic diagnose</li>
-							<li><strong>Telephone</strong> 0043 432324</li>
-							<li><strong>Email</strong> user@email.com</li>
-						</ul>
-						<ul class="buttons">
-							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
-							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li>
-						</ul>
-					</li>
-					<li>
-						<figure><img src="img/avatar2.jpg" alt=""></figure>
-						<h4>Andrea Lomarco <i class="cancel">Cancel</i></h4>
-						<ul class="booking_details">
-							<li><strong>Booking date</strong> 11 November 2017</li>
-							<li><strong>Booking time</strong> 10.20AM</li>
-							<li><strong>Visits</strong> Cardiology test, Diabetic diagnose</li>
-							<li><strong>Telephone</strong> 0043 432324</li>
-							<li><strong>Email</strong> user@email.com</li>
-						</ul>
-						<ul class="buttons">
-							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
-							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li>
-						</ul>
-					</li>
-					<li>
-						<figure><img src="img/avatar3.jpg" alt=""></figure>
-						<h4>Marc Twain <i class="approved">Approved</i></h4>
-						<ul class="booking_details">
-							<li><strong>Booking date</strong> 11 November 2017</li>
-							<li><strong>Booking time</strong> 10.20AM</li>
-							<li><strong>Visits</strong> Cardiology test, Diabetic diagnose</li>
-							<li><strong>Telephone</strong> 0043 432324</li>
-							<li><strong>Email</strong> user@email.com</li>
-						</ul>
-						<ul class="buttons">
-							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
-							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li>
-						</ul>
-					</li>
+          <?php if (!empty($apps)): ?>
+            <?php foreach ($apps as $key => $value): ?>
+              <li>
+    						<figure><img src="img/avatar1.jpg" alt=""></figure>
+    						<h4><?php echo $value['Fullname'] ?> <i class="pending">Pending</i></h4>
+    						<ul class="booking_details">
+    							<li><b>Booking date</b>: 11 November 2017</li>
+    							<li><b>Service </b>: <?php echo $value['service'] ?></li>
+    							<li><b>Telephone</b>: <?php echo $value['Phone']; ?></li>
+    							<li><b>Email</b>: <?php echo $value['email']; ?></li>
+                  <li><b>Notes</b>: <?php echo $value['Notes']; ?></li>
+    						</ul>
+    						<ul class="buttons">
+    							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
+    							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li>
+    						</ul>
+    					</li>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <li>
+              <figure><img src="img/avatar1.jpg" alt=""></figure>
+              <h4>No Booked Appointments</h4>
+            </li>
+          <?php endif; ?>
 				</ul>
 			</div>
 		</div>
@@ -97,7 +83,7 @@
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © FinDoctor 2017</small>
+          <small>copyright &copy; docApp 2020</small>
         </div>
       </div>
     </footer>
@@ -137,6 +123,6 @@
 	<script src="vendor/jquery.magnific-popup.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/admin.js"></script>
-	
+
 </body>
 </html>
