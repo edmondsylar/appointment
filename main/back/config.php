@@ -18,15 +18,13 @@
       if($this->conn === true){ echo "App not loving your connection"; }
   }
 
-  function apoint($s,$p,$f,$e,$ph,$n,$d){
-    // $book = "INSERT INTO (`service`, `Provider`, `Fullname`, `email`, `Phone`, `Notes`, `district`) values ('service', 'provider', 'email', 'phone', 'notes', 'district')";
-    $book = "INSERT INTO appointments(`service`, `Provider`, `Fullname`, `email`, `Phone`, `Notes`, `district`) VALUES ('$s', '$p', '$f', '$e', '$ph', '$n', '$d')";
-    $qery = mysqli_query($this->conn, $book);
-
-    if($qery === false){
-      echo mysqli_error($this->conn);
-    } else {
-      header("Location: ../payments.php?email=". $e);
+  function apoint_one($f, $e, $ph, $n, $date){
+    $id = uniqid('', true);
+    $sql = "INSERT INTO appointments(`id`,`Fullname`, `email`, `Phone`, `Notes`, `date`) VALUES ('$id', '$f', '$e', '$ph', '$n', '$date')";
+    if(mysqli_query($this->conn, $sql)){
+      return header('Location: ../district.php?id='. $id .'&start');
+    }else{
+      return header("Location: ../index.php");
     }
   }
 
@@ -60,7 +58,7 @@
 
 
   function get_specs($dist){
-    $get = "SELECT * FROM doctors";
+    $get = "SELECT * FROM doctors where district='$dist'";
     $q = mysqli_query($this->conn, $get);
     $results = ($q);
 
@@ -69,12 +67,26 @@
 
 
   function get_pro($d, $s){
-    $get = "SELECT fullname from doctors where district='$d', and specialty='$s'";
+    $get = "SELECT * from doctors where district='$d' AND specialty='$s'";
     $q = mysqli_query($this->conn, $get);
     $results = ($q);
 
     return $results;
 
+  }
+
+  function complete_book($id, $loc, $service, $doc){
+    $sql = "UPDATE appointments SET district='$loc', service='$service', Provider='$doc' where id='$id'";
+    if(mysqli_query($this->conn, $sql)){
+      $done = "SELECT email from appointments where id='$id'";
+      $res = mysqli_fetch_assoc(mysqli_query($this->conn, $done));
+      if($res){
+      header("Location: ../payments.php?email=".$res['email']);
+      }
+
+    }else{
+      echo mysqli_error($this->conn);
+    }
   }
 
   function get_appointments()

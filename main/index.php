@@ -69,52 +69,19 @@
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
-									<label for="service">District</label>
-									<select class="form-control" name="district" id="country">
-										<option value="" selected>Select your District</option>
-										<?php if (!empty($districts)): ?>
-											<?php foreach ($districts as $key => $value): ?>
-												<option value="<?php echo $value['name'] ?>" onclick="window.location.href='index.php?d=<?php echo $value['name'] ?>'"><?php echo $value['name'] ?></option>
-											<?php endforeach; ?>
-										<?php endif; ?>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group">
-									<label for="service">Service</label>
-									<select class="form-control" name="service" id="country">
-										<option value="">Select your Service</option>
-										<?php if (!empty($Specialty)): ?>
-											<?php foreach ($Specialty as $key => $value): ?>
-												<option value="<?php echo $value['specialty'] ?>" onclick="window.location.href='index.php?d=<?php echo $dist; ?>&spec='<?php echo $value['specialty'] ?>''"><?php echo $value['specialty'] ?></option>
-											<?php endforeach; ?>
-										<?php endif; ?>
-									</select>
-								</div>
-							</div>
+									<label for="service">Appointment Date</label>
+									<input type="date" id="date" name="date" class="form-control">
 
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group">
-									<label for="service">Prvover</label>
-									<select class="form-control" name="provider" id="country">
-										<option value="">Select your Provider</option>
-										<option value="Europe">Europe</option>
-										<option value="United states">United states</option>
-										<option value="Asia">Asia</option>
-									</select>
 								</div>
 							</div>
-
 							<div class="col-md-12 col-sm-6">
 								<div class="form-group">
-									<label for="notes"></label>
+									<label for="notes">Notes</label>
 									<textarea name="description" class="form-control" placeholder="Enter notes about your bookings" rows="8" cols="90"></textarea>
 								</div>
 							</div>
 						</div>
+						<!-- space for stored data -->
 					</div>
 					<hr>
 				</div>
@@ -152,6 +119,13 @@
 		</div>
 		<!-- /container -->
 	</main>
-	<!-- /main -->
+
+	<script type="text/javascript">
+		function district(){
+			var selected = document.getElementById('dist').value;
+
+			alert(selected);
+		}
+	</script>
 </body>
 </html>

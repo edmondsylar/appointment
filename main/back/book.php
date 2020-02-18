@@ -7,12 +7,10 @@
     $f = $_POST['names'];
     $e = $_POST['email'];
     $ph = $_POST['phone'];
-    $d = $_POST['district'];
-    $s = $_POST['service'];
-    $p = $_POST['provider'];
     $n = $_POST['description'];
+    $date = $_POST['date'];
 
-    $cur->apoint($s, $p, $f, $e, $ph, $n, $d);
+    $cur->apoint_one($f, $e, $ph, $n, $date);
     // echo ($s . $p . $f . $e . $ph . $n . $d);
 
   }
