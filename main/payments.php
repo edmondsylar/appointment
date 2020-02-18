@@ -83,47 +83,13 @@
         <hr>
 
         <div id="policy">
-          <h4>Cancellation policy</h4>
-          <div class="form-group">
-            <label>
-              <input type="checkbox" name="policy_terms" id="policy_terms"> I accept terms and conditions and general policy.
-            </label>
-          </div>
+          <input type="submit" class="btn_1 full-width" value="Confirm Payment">
+          </form> 
         </div>
       </div>
+      
       </div>
       <!-- /col -->
-      <aside class="col-xl-4 col-lg-4" id="sidebar">
-        <div class="box_general_3 booking">
-            <div class="title">
-              <h3>Comfirm Payments</h3>
-            </div>
-            <div class="summary">
-              <ul>
-                <li>Date: <strong class="float-right">11/12/2017</strong></li>
-                <li>Time: <strong class="float-right">10.30 am</strong></li>
-                <li>Dr. Name: <strong class="float-right">Dr. julia Jhones</strong></li>
-              </ul>
-            </div>
-            <ul class="treatments checkout clearfix">
-              <li>
-                Back Pain visit <strong class="float-right">$55</strong>
-              </li>
-              <li>
-                Cardiovascular screen <strong class="float-right">$55</strong>
-              </li>
-              <li class="total">
-                Total <strong class="float-right">$110</strong>
-              </li>
-            </ul>
-            <hr>
-            <input type="submit" class="btn_1 full-width" value="Confirm and pay">
-
-          </form>
-        </div>
-        <!-- /box_general -->
-      </aside>
-      <!-- /asdide -->
     </div>
     <!-- /row -->
   </div>
