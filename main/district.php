@@ -88,7 +88,6 @@
                       <script type="text/javascript">
                         function next_two(id, loc, spec){
                           window.location.href="district.php?id="+id+'&loc='+loc+'&spec='+spec;
-                          alert(id + " " + loc + " " + spec)
                         }
                       </script>
     								</div>
@@ -123,7 +122,6 @@
                       <script type="text/javascript">
                         function finale(id, loc, spec, doc){
                           window.location.href="back/complete_book.php?id="+id+'&loc='+loc+'&spec='+spec+'&doc='+doc;
-                          // alert(id + " " + loc + " " + spec)
                         }
                       </script>
     								</div>
@@ -137,34 +135,6 @@
 					<hr>
 				</div>
 				</div>
-				<!-- /col -->
-				<aside class="col-xl-4 col-lg-4" id="sidebar">
-					<div class="box_general_3 booking">
-						<form>
-							<div class="title">
-								<h3>Booking Details</h3>
-							</div>
-							<div class="summary">
-								<ul>
-									<li>Name: <strong class="float-right">11/12/2017</strong></li>
-									<li>Time: <strong class="float-right">10.30 am</strong></li>
-									<li>Dr. Name: <strong class="float-right">Dr. julia Jhones</strong></li>
-								</ul>
-							</div>
-							<ul class="treatments checkout clearfix">
-								<li>
-									Service <strong class="float-right">$55</strong>
-								</li>
-							</ul>
-							<hr>
-							<input type="submit" class="btn_1 full-width" value="Confirm Details">
-							<!-- <a href="payments.php" class="btn_1 full-width">Confirm Details</a> -->
-						</form>
-					</div>
-					</form>
-					<!-- /box_general -->
-				</aside>
-				<!-- /asdide -->
 			</div>
 			<!-- /row -->
 		</div>
@@ -174,8 +144,6 @@
 	<script type="text/javascript">
 		function district(){
 			var selected = document.getElementById('dist').value;
-
-			alert(selected);
 		}
 	</script>
 </body>
