@@ -41,25 +41,27 @@
     							<div class="col-md-6 col-sm-6">
     								<div class="form-group">
     									<label>Location</label>
-    									<select class="form-control" name="location">
+    									<select class="form-control loc" id="location"name="location">
                         <option value="" selected=true>Select Location</option>
                         <?php if (!empty($d)): ?>
                           <?php foreach ($d as $key => $value): ?>
-                            <option value="<?php echo $value['name'] ?>" onclick="next('<?php echo $id ?>','<?php echo $value['name'] ?>')"><?php echo $value['name'] ?></option>
+                            <option value="<?php echo $value['name'] ?>"> <?php echo $value['name']?> </option>
                           <?php endforeach; ?>
                         <?php endif; ?>
                       </select>
 
                       <script type="text/javascript">
-                        function next(id, ne){
-                          var location = window.location;
-                          var newloca = location +'&location='+ne
-                          // location.replace(newloca)
-                          window.location.href="district.php?id="+id+'&location='+ne;
-                          // alert(newloca)
+                        function next_service(id){
+                          var loca = document.getElementById("location").value;
+                          window.location.href="district.php?id="+id+'&location='+loca;
+                          
                         }
+                       
                       </script>
     								</div>
+
+                    <hr>
+                    <span class="btn_1 full-width" onclick="next_service('<?php echo $id; ?>')"> next</button>
     							</div>
     						</div>
               <?php endif; ?>
@@ -73,12 +75,11 @@
     							<div class="col-md-6 col-sm-6">
     								<div class="form-group">
     									<label>Service</label>
-    									<select class="form-control" name="location">
+    									<select class="form-control" id="service">
                         <option value="" selected=true>Select Service</option>
                         <?php if (!empty($d)): ?>
                           <?php foreach ($d as $key => $value): ?>
-                            <option value="<?php echo $value['specialty'] ?>"
-                              onclick="next_two('<?php echo $_GET['id']; ?>','<?php echo $_GET['location'] ?>','<?php echo $value['specialty'] ?>')">
+                            <option value="<?php echo $value['specialty'] ?>">
                               <?php echo $value['specialty'] ?>
                             </option>
                           <?php endforeach; ?>
@@ -86,11 +87,16 @@
                       </select>
 
                       <script type="text/javascript">
-                        function next_two(id, loc, spec){
-                          window.location.href="district.php?id="+id+'&loc='+loc+'&spec='+spec;
+                        function next_provider(id){
+                          var serv = document.getElementById("service").value;
+                          window.location.href="district.php?id="+id+'&loc=<?php echo $_GET['location']?>&spec='+serv;
+                          
                         }
+                       
                       </script>
     								</div>
+                    <hr>
+                    <span class="btn_1 full-width" onclick="next_provider('<?php echo $id; ?>')"> next</button>
     							</div>
     						</div>
               <?php endif; ?>
@@ -107,12 +113,11 @@
     							<div class="col-md-6 col-sm-6">
     								<div class="form-group">
     									<label>Doctor</label>
-    									<select class="form-control" name="location">
+    									<select class="form-control" id="doc">
                         <option value="" selected=true>Select Doctor</option>
                         <?php if (!empty($Doc)): ?>
                           <?php foreach ($Doc as $key => $value): ?>
-                            <option value="<?php echo $value['fullname'] ?>"
-                              onclick="finale('<?php echo $_GET['id']; ?>','<?php echo $_GET['loc'] ?>','<?php echo $_GET['spec'] ?>','<?php echo $value['fullname'] ?>')">
+                            <option value="<?php echo $value['fullname'] ?>">
                               <?php echo $value['fullname'] ?>
                             </option>
                           <?php endforeach; ?>
@@ -120,11 +125,16 @@
                       </select>
 
                       <script type="text/javascript">
-                        function finale(id, loc, spec, doc){
+                        function finale(id, loc, spec){
+                          var doc = document.getElementById("doc").value;
                           window.location.href="back/complete_book.php?id="+id+'&loc='+loc+'&spec='+spec+'&doc='+doc;
+
+                          // alert (id +' '+loc+' '+spec+' '+doc)
                         }
                       </script>
     								</div>
+                    <hr>
+                    <span class="btn_1 full-width" onclick="finale('<?php echo $id; ?>','<?php echo $_GET['loc']; ?>','<?php echo $_GET['spec'] ?>')"> Complete</button>
     							</div>
     						</div>
               <?php endif; ?>
@@ -132,7 +142,6 @@
 
 
 					</div>
-					<hr>
 				</div>
 				</div>
 			</div>

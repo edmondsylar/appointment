@@ -31,8 +31,10 @@
           </div>
         <h2>Thanks for your booking!</h2>
         <p>You'll receive a confirmation email at <?php echo $email; ?></p>
-        </div>
+        <hr>
+        <a href="index.php" class="btn_1 full-width">Done</a>
       </div>
+        </div>
     </div>
     <!-- /row -->
   </div>
