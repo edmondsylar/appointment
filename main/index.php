@@ -35,7 +35,7 @@
 				<div class="col-xl-8 col-lg-8">
 				<div class="box_general_3 cart">
 					<div class="message">
-						<p>Admin? &nbsp; <a href="../login.php">Login instead.</a></p>
+						<p>Admin? &nbsp; <a href="../Login.php">Login instead.</a></p>
 					</div>
 					<div class="form_title">
 						<h3><strong>1</strong>Your Details</h3>
