@@ -11,8 +11,12 @@
   $district =    $_POST['district'];
   $address =    $_POST['address'];
 
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
   // echo $names . $email . $phone . $Specialty . $district . $address;
   $cur->add_doctor($names, $email, $phone, $Specialty, $address, $district);
+  $cur->create_user($username, $password);
 
   }
 
