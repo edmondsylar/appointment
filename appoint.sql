@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2020 at 04:45 PM
+-- Generation Time: Mar 10, 2020 at 10:11 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -42,13 +42,6 @@ CREATE TABLE `appointments` (
   `created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `appointments`
---
-
-INSERT INTO `appointments` (`id`, `service`, `Provider`, `Fullname`, `email`, `Phone`, `Notes`, `date`, `status`, `district`, `created`) VALUES
-('5e4c0507019b75.93312221', 'Gynecologyst', 'Edmond Musiitwa', 'Kajuguli Eron', 0x6b616a75677540676d61696c2e636f6d, '078989879', 'This is a test registration', '2020-02-13', 'pending', 'Wakiso', '2020-02-18 15:38:47');
-
 -- --------------------------------------------------------
 
 --
@@ -60,13 +53,6 @@ CREATE TABLE `districts` (
   `name` varchar(250) NOT NULL,
   `created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `districts`
---
-
-INSERT INTO `districts` (`id`, `name`, `created`) VALUES
-('e6ff6277-525e-11ea-99be-28d24460ef18', 'Wakiso', '2020-02-18 14:56:54');
 
 --
 -- Triggers `districts`
@@ -86,6 +72,7 @@ CREATE TABLE `doctors` (
   `id` varchar(250) NOT NULL,
   `fullname` varchar(250) NOT NULL,
   `email` varchar(250) NOT NULL,
+  `role` enum('doctor','admin') NOT NULL DEFAULT 'doctor',
   `password` varchar(250) NOT NULL,
   `Phone` varchar(250) NOT NULL,
   `district` varchar(250) NOT NULL,
@@ -95,17 +82,40 @@ CREATE TABLE `doctors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `doctors`
---
-
-INSERT INTO `doctors` (`id`, `fullname`, `email`, `password`, `Phone`, `district`, `specialty`, `address`, `created`) VALUES
-('e6e07e97-525e-11ea-99be-28d24460ef18', 'Edmond Musiitwa', 'edmondmusiitwa@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', '0701207194', 'Wakiso', 'Gynecologyst', 'Kampala', '2020-02-18 14:56:54');
-
---
 -- Triggers `doctors`
 --
 DELIMITER $$
 CREATE TRIGGER `id_trigger` BEFORE INSERT ON `doctors` FOR EACH ROW SET NEW.id = uuid()
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` varchar(250) NOT NULL,
+  `fullname` varchar(250) NOT NULL,
+  `username` varchar(250) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `role` enum('admin','doctor') NOT NULL DEFAULT 'doctor',
+  `createdOn` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `role`, `createdOn`) VALUES
+('5af386ba-62a0-11ea-a618-28d24460ef18', 'Edmond Musiitwa', 'edmondmusiitwa@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'admin', '2020-03-10 07:25:44');
+
+--
+-- Triggers `users`
+--
+DELIMITER $$
+CREATE TRIGGER `id_tigger` BEFORE INSERT ON `users` FOR EACH ROW SET NEW.id = uuid()
 $$
 DELIMITER ;
 
@@ -129,6 +139,12 @@ ALTER TABLE `districts`
 -- Indexes for table `doctors`
 --
 ALTER TABLE `doctors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 COMMIT;
 

@@ -5,7 +5,7 @@
 <?php
   include_once "main/back/config.php";
   $cur = new Config();
-  $apps = $cur->get_appointments($_SESSION['name']);
+  $apps = $cur->get_appointments($_SESSION['name'], $_SESSION['role']);
 
  ?>
 
@@ -24,23 +24,23 @@
       </ol>
 		<div class="box_general">
 			<div class="header_box">
-				<h2 class="d-inline-block">Bookings List</h2>
-				<div class="filter">
+				<h2 class="d-inline-block">Bookings List </h2>
+				<!-- <div class="filter">
 					<select name="orderby" class="selectbox">
 						<option value="Any status">Any status</option>
 						<option value="Approved">Approved</option>
 						<option value="Pending">Pending</option>
 						<option value="Cancelled">Cancelled</option>
 					</select>
-				</div>
+				</div> -->
 			</div>
 			<div class="list_general">
 				<ul>
           <?php if (!empty($apps)): ?>
             <?php foreach ($apps as $key => $value): ?>
               <li>
-    						<figure><img src="img/avatar1.jpg" alt=""></figure>
-    						<h4><?php echo $value['Fullname'] ?> <i class="pending">Pending</i></h4>
+    						<figure><img src="https://cdn1.iconfinder.com/data/icons/business-users/512/circle-512.png" alt=""></figure>
+    						<h4><?php echo $value['Fullname'] ?> <i class="pending"><?php echo $value['status'] ?></i></h4>
     						<ul class="booking_details">
     							<li><b>Booking date</b>: 11 November 2017</li>
     							<li><b>Service </b>: <?php echo $value['service'] ?></li>
@@ -48,10 +48,20 @@
     							<li><b>Email</b>: <?php echo $value['email']; ?></li>
                   <li><b>Notes</b>: <?php echo $value['Notes']; ?></li>
     						</ul>
-    						<ul class="buttons">
-    							<li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
-    							<li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a></li>
-    						</ul>
+                <?php if ($_SESSION['role'] == 'admin'): ?>
+        						<ul class="buttons">
+                      <li><a href="main/back/update.php?id=<?php echo $value['id'] ?>&status=approved" class="btn_1 gray approve" ><i class="fa fa-fw fa-check-circle-o"></i>
+                      <?php if ($value['status'] == 'approved'): ?>
+                          Approved
+                        <?php elseif($value['status'] == 'declined'): ?>
+                          Declined
+                        <?php elseif($value['status'] == 'pending'): ?>
+                          Approve
+                        <?php endif; ?>
+                      </a></li>
+        							<li><a href="main/back/update.php?id=<?php echo $value['id'] ?>&status=declined" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Decline</a></li>
+        						</ul>
+                <?php endif; ?>
     					</li>
             <?php endforeach; ?>
           <?php else: ?>
