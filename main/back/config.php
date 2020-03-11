@@ -81,7 +81,7 @@
 
 
   function get_specs($dist){
-    $get = "SELECT * FROM doctors where district='$dist'";
+    $get = "SELECT DISTINCT(specialty) FROM doctors where district='$dist'";
     $q = mysqli_query($this->conn, $get);
     $results = ($q);
 
