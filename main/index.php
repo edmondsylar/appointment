@@ -74,12 +74,12 @@
 
 								</div>
 							</div>
-							<div class="col-md-12 col-sm-6">
+							<!-- <div class="col-md-12 col-sm-6">
 								<div class="form-group">
 									<label for="notes">Notes</label>
 									<textarea name="description" class="form-control" placeholder="Enter notes about your bookings" rows="8" cols="90"></textarea>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<!-- space for stored data -->
 					</div>

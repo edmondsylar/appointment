@@ -5,18 +5,28 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="#">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
-        </li>
-		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
-          <a class="nav-link" href="doctors.php">
-            <i class="fa fa-fw fa-envelope-open"></i>
-            <span class="nav-link-text">Add Doctor</span>
-          </a>
-        </li>
+        </li> -->
+        <?php if ($_SESSION['role'] == 'admin'): ?>
+    		   <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+              <a class="nav-link" href="doctors.php">
+                <i class="fa fa-fw fa-envelope-open"></i>
+                <span class="nav-link-text">Add Doctor</span>
+              </a>
+            </li>
+    		   <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+              <a class="nav-link" href="docs.php">
+                <i class="fa fa-fw fa-envelope-open"></i>
+                <span class="nav-link-text">Doctors</span>
+              </a>
+            </li>
+        <?php endif; ?>
+
+
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
           <a class="nav-link" href="doclist.php">
             <i class="fa fa-fw fa-calendar-check-o"></i>
