@@ -15,9 +15,10 @@
   // $password = $_POST['password'];
 
   // echo $names . $email . $phone . $Specialty . $district . $address;
-  $cur->add_doctor($names, $email, $phone, $Specialty, $address, $district);
+  $ret = $cur->add_doctor($names, $email, $phone, $Specialty, $address, $district);
+  // echo $ret;
 
-  $cur->create_user($names, $email);
+  $cur->create_user($ret, $names, $email);
 
   }
 

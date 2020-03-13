@@ -117,7 +117,7 @@
                         <option value="" selected=true>Select Doctor</option>
                         <?php if (!empty($Doc)): ?>
                           <?php foreach ($Doc as $key => $value): ?>
-                            <option value="<?php echo $value['fullname'] ?>">
+                            <option value="<?php echo $value['id'] ?>">
                               <?php echo $value['fullname'] ?>
                             </option>
                           <?php endforeach; ?>

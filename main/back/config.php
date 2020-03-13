@@ -28,6 +28,7 @@
       session_start();
         $_SESSION["loggedin"] = true;
           $_SESSION["email"] = $res['username'];
+          $_SESSION["id"] = $res['id'];
         $_SESSION["name"] = $res['fullname'];
         $_SESSION['role'] = $res['role'];
 
@@ -51,7 +52,8 @@
 
   function add_doctor($name, $mail, $phone, $spec, $address, $district){
     $password = md5('password');
-    $make_doc = "INSERT INTO doctors(`fullname`, `email`, `Phone`, `specialty`, `address`, `district`, `password`) VALUES ('$name', '$mail', '$phone', '$spec', '$address', '$district', '$password')";
+    $id = uniqid(true, '');
+    $make_doc = "INSERT INTO doctors(`id`, `fullname`, `email`, `Phone`, `specialty`, `address`, `district`, `password`) VALUES ('$id', '$name', '$mail', '$phone', '$spec', '$address', '$district', '$password')";
     $q = mysqli_query($this->conn, $make_doc);
 
     if($q === false){
@@ -67,7 +69,7 @@
 
 
     }
-
+    return $id;
   }
 
   function get_districts(){
@@ -98,13 +100,54 @@
 
   }
 
+  function times($id, $time){
+    $q = "INSERT INTO times(`doctor`, `time`) values ('$id', '$time')";
+    if(mysqli_query($this->conn, $q)){
+      return header("Location: ../../docs.php");
+    }else {
+      echo "Something went wrong ". mysqli_error($this->conn);
+    }
+  }
+
+  function doc_dates($id){
+    $res = mysqli_query($this->conn, "SELECT distinct(Provider) from appointments where id='$id'");
+    $doc = mysqli_fetch_assoc($res)['Provider'];
+
+    $two = "SELECT * FROM times where doctor='$doc'";
+    $dates = mysqli_query($this->conn, $two);
+    return ($dates);
+  }
+
+  function doc_times($id){
+    $q = "SELECT * from times where doctor='$id'";
+    $res = mysqli_query($this->conn, $q);
+
+    return ($res);
+  }
+
+  function add_date($id, $time){
+    $q = "UPDATE appointments SET time='$time' where id='$id'";
+    $res = mysqli_query($this->conn, $q);
+    if ($res) {
+      return header("Location: ../index.php");
+    }else {
+      echo "Something went wrong ". mysqli_error($this->conn);
+    }
+
+  }
+
+  function get_doc($id){
+    $res = mysqli_query($this->conn, "SELECT * FROM doctors where id='$id'");
+    echo mysqli_fetch_assoc($res)['fullname'];
+  }
+
   function complete_book($id, $loc, $service, $doc){
     $sql = "UPDATE appointments SET district='$loc', service='$service', Provider='$doc' where id='$id'";
     if(mysqli_query($this->conn, $sql)){
       $done = "SELECT email from appointments where id='$id'";
       $res = mysqli_fetch_assoc(mysqli_query($this->conn, $done));
       if($res){
-      header("Location: ../payments.php?email=".$res['email']);
+      header("Location: ../date.php?id=".$id);
       }
 
     }else{
@@ -133,10 +176,10 @@
       }
     }
 
-    function create_user($fullname, $email){
+    function create_user($id, $fullname, $email){
       $p = 'password';
       $password = md5($p);
-      $make_user = "INSERT INTO users(`fullname`, `username`, `password`) VALUES ('$fullname', '$email', '$password')";
+      $make_user = "INSERT INTO users(`id`, `fullname`, `username`, `password`) VALUES ('$id','$fullname', '$email', '$password')";
       if(mysqli_query($this->conn, $make_user)){
 
         return header("Location: ../../doctors.php");
