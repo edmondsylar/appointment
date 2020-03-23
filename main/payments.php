@@ -1,8 +1,4 @@
 <?php include_once "includes/head.php"; ?>
-<?php
-  $email = $_GET['email'];
-
- ?>
 <main>
   <div id="breadcrumb">
     <div class="container">
@@ -18,80 +14,40 @@
   <div class="container margin_60">
     <div class="row">
       <div class="col-xl-8 col-lg-8">
-      <div class="box_general_3 cart">
+        <div class="box_general_3 cart">
 
-        <div class="form_title">
-          <h3><strong>2</strong>Payment Information</h3>
-          <p>
-            Enter credit card details to complete the booking
+          <div class="form_title">
+            <h3><strong>2</strong>Pay To Complete Booking</h3>
+            <p>Make payments to complete the Booking process</p>
+          </div>
+          <p class="step" id="mydiv">
+            Click the button below to complete the booking. <br>
+            A charge of 5000 will be deducted from your account <br> And an appointment will be scheduled with the doctor you selected. previously
           </p>
-        </div>
-        <form action="back/payments.php" method="POST">
-        <div class="step">
-          <div class="form-group">
-            <label>Name on card</label>
-            <input type="text" class="form-control" id="name_card_booking" name="card_names" placeholder="John doe">
+          <div align="center" class="step">
+            <form method="post" style="margin:0px" action="https://payments.yo.co.ug/webexpress/" target="_blank">
+              <input type="image" name="submit" src="https://payments.yo.co.ug/webexpress/images/paybutton.png" />
+              <input type="hidden" name="bid" value="217" />
+              <input type="hidden" name="currency" value="UGX" />
+              <input type="hidden" name="amount" value="5000" />
+              <input type="hidden" name="narrative" value="appointment" />
+              <input type="hidden" name="reference" value="appointmentRef" />
+              <input type="hidden" name="provider_reference_text" value="Appointment With Doctor set" />
+              <input type="hidden" name="account" value="100712303477" />
+              <input type="hidden" name="return" value="https://hsvug.com/appoint/main/?unique_transaction_id=0&transaction_reference=0" />
+              <input type="hidden" name="prefilled_payer_email_address" value="" />
+              <input type="hidden" name="prefilled_payer_mobile_payment_msisdn" value="" />
+              <input type="hidden" name="prefilled_payer_names" value="" />
+              <input type="hidden" name="abort_payment_url" value="" />
+            </form>
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input type="hidden" name="email" value="<?php echo $email; ?>">
-                <label>Card number</label>
-                <input type="text" id="card_number" name="card_number" class="form-control" placeholder="xxxx - xxxx - xxxx - xxxx">
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-6">
-              <img src="img/payments.png" alt="Cards" class="cards">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <label>Expiration date</label>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="text" id="expire_month" name="expire_month" class="form-control" placeholder="MM">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="text" id="expire_year" name="expire_year" class="form-control" placeholder="Year">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Security code</label>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <input type="text" id="ccv" name="ccv" class="form-control" placeholder="CCV">
-                    </div>
-                  </div>
-                  <div class="col-md-8">
-                    <img src="img/icon_ccv.gif" width="50" height="29" alt="ccv"><small>CVV number</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--End row -->
-
-
-        </div>
-        <hr>
-
-        <div id="policy">
-          <input type="submit" class="btn_1 full-width" value="Confirm Payment">
-          </form> 
         </div>
       </div>
-      
-      </div>
-      <!-- /col -->
+
     </div>
-    <!-- /row -->
+    <!-- /col -->
+  </div>
+  <!-- /row -->
   </div>
   <!-- /container -->
 </main>

@@ -129,7 +129,7 @@
     $q = "UPDATE appointments SET time='$time' where id='$id'";
     $res = mysqli_query($this->conn, $q);
     if ($res) {
-      return header("Location: ../index.php");
+      return header("Location: ../payments.php");
     }else {
       echo "Something went wrong ". mysqli_error($this->conn);
     }
